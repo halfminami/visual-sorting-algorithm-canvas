@@ -1,5 +1,5 @@
-# make sorting visual
-This visualizes sorting algorithms like many other examples found when googling gif of sorts.  
+# make sorting visual (`canvas`)
+This visualizes sorting algorithms like many other examples found when googling gif of sorts.
 This uses `canvas`. It can record video on browser. (not yet)
 
 # how to add sort

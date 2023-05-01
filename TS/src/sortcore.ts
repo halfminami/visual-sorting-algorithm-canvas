@@ -11,6 +11,8 @@ import {
   leftBiggerClock,
   isSorted,
   equalsClock,
+  valueBiggerClock,
+  valueSmallerClock,
 } from "./sortcommon.js";
 
 export class Sort {
@@ -165,6 +167,29 @@ export class ArrayWrap {
       this.sortBox,
       this.#sleepCnt,
       value
+    );
+    return ret;
+  }
+
+  // REVIEW
+  /** for binary search */
+  async valueBigger(value: number, idx: number) {
+    const ret = await valueBiggerClock(
+      this.array,
+      value,
+      idx,
+      this.sortBox,
+      this.#sleepCnt
+    );
+    return ret;
+  }
+  async valueSmaller(value: number, idx: number) {
+    const ret = await valueSmallerClock(
+      this.array,
+      value,
+      idx,
+      this.sortBox,
+      this.#sleepCnt
     );
     return ret;
   }

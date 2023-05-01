@@ -297,8 +297,8 @@ export async function equalsClock(
   let ctx = sortBox.getContext("2d");
   ctx = assertCanvasContext(ctx);
   const obj = parseDatasets(sortBox);
-  fillBar(ctx, obj.left, obj.top, obj.right, obj.bottom, arr, idx1, "green");
 
+  fillBar(ctx, obj.left, obj.top, obj.right, obj.bottom, arr, idx1, "green");
   strokeFrame(
     ctx,
     obj.top,
@@ -306,9 +306,10 @@ export async function equalsClock(
     obj.right - obj.left,
     obj.bottom - obj.top
   );
-  await sleep(sleepCnt());
-  fillBar(ctx, obj.left, obj.top, obj.right, obj.bottom, arr, idx1);
 
+  await sleep(sleepCnt());
+
+  fillBar(ctx, obj.left, obj.top, obj.right, obj.bottom, arr, idx1);
   strokeFrame(
     ctx,
     obj.top,
@@ -317,6 +318,71 @@ export async function equalsClock(
     obj.bottom - obj.top
   );
   return arr[idx1];
+}
+
+export async function valueBiggerClock(
+  arr: number[],
+  value: number,
+  idx1: number,
+  sortBox: HTMLCanvasElement,
+  sleepCnt: () => number
+) {
+  const ret = value > arr[idx1];
+  let ctx = sortBox.getContext("2d");
+  ctx = assertCanvasContext(ctx);
+  const obj = parseDatasets(sortBox);
+  fillBar(ctx, obj.left, obj.top, obj.right, obj.bottom, arr, idx1, "green");
+  strokeFrame(
+    ctx,
+    obj.top,
+    obj.left,
+    obj.right - obj.left,
+    obj.bottom - obj.top
+  );
+
+  await sleep(sleepCnt() / 2); // 2 is random number
+
+  fillBar(ctx, obj.left, obj.top, obj.right, obj.bottom, arr, idx1);
+  strokeFrame(
+    ctx,
+    obj.top,
+    obj.left,
+    obj.right - obj.left,
+    obj.bottom - obj.top
+  );
+  return ret;
+}
+export async function valueSmallerClock(
+  arr: number[],
+  value: number,
+  idx1: number,
+  sortBox: HTMLCanvasElement,
+  sleepCnt: () => number
+) {
+  const ret = value < arr[idx1];
+  let ctx = sortBox.getContext("2d");
+  ctx = assertCanvasContext(ctx);
+  const obj = parseDatasets(sortBox);
+  fillBar(ctx, obj.left, obj.top, obj.right, obj.bottom, arr, idx1, "green");
+  strokeFrame(
+    ctx,
+    obj.top,
+    obj.left,
+    obj.right - obj.left,
+    obj.bottom - obj.top
+  );
+
+  await sleep(sleepCnt() / 2); // 2 is random number
+
+  fillBar(ctx, obj.left, obj.top, obj.right, obj.bottom, arr, idx1);
+  strokeFrame(
+    ctx,
+    obj.top,
+    obj.left,
+    obj.right - obj.left,
+    obj.bottom - obj.top
+  );
+  return ret;
 }
 /** includes begin and end */
 function mathrandint(begin: number, end: number): number {

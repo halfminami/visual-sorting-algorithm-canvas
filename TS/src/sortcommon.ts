@@ -207,13 +207,6 @@ export function initUnit(box: HTMLCanvasElement, arr: number[]): number[] {
   for (let i = 0; i < arr.length; ++i) {
     fillBar(ctx, obj.left, obj.top, obj.right, obj.bottom, arr, i);
   }
-  strokeFrame(
-    ctx,
-    obj.top,
-    obj.left,
-    obj.right - obj.left,
-    obj.bottom - obj.top
-  );
   return arr;
 }
 
@@ -232,26 +225,12 @@ export async function arrswapClock(
   for (let i of [idx1, idx2]) {
     fillBar(ctx, obj.left, obj.top, obj.right, obj.bottom, arr, i, "green");
   }
-  strokeFrame(
-    ctx,
-    obj.top,
-    obj.left,
-    obj.right - obj.left,
-    obj.bottom - obj.top
-  );
 
   await sleep(sleepCnt());
 
   for (let i of [idx1, idx2]) {
     fillBar(ctx, obj.left, obj.top, obj.right, obj.bottom, arr, i);
   }
-  strokeFrame(
-    ctx,
-    obj.top,
-    obj.left,
-    obj.right - obj.left,
-    obj.bottom - obj.top
-  );
 
   return;
 }
@@ -271,26 +250,12 @@ export async function leftBiggerClock(
   for (let i of [idx1, idx2]) {
     fillBar(ctx, obj.left, obj.top, obj.right, obj.bottom, arr, i, "green");
   }
-  strokeFrame(
-    ctx,
-    obj.top,
-    obj.left,
-    obj.right - obj.left,
-    obj.bottom - obj.top
-  );
 
   await sleep(sleepCnt() / 2); // 2 is random number
 
   for (let i of [idx1, idx2]) {
     fillBar(ctx, obj.left, obj.top, obj.right, obj.bottom, arr, i);
   }
-  strokeFrame(
-    ctx,
-    obj.top,
-    obj.left,
-    obj.right - obj.left,
-    obj.bottom - obj.top
-  );
 
   return ret;
 }
@@ -309,24 +274,10 @@ export async function equalsClock(
   const obj = parseDatasets(sortBox);
 
   fillBar(ctx, obj.left, obj.top, obj.right, obj.bottom, arr, idx1, "green");
-  strokeFrame(
-    ctx,
-    obj.top,
-    obj.left,
-    obj.right - obj.left,
-    obj.bottom - obj.top
-  );
 
   await sleep(sleepCnt());
 
   fillBar(ctx, obj.left, obj.top, obj.right, obj.bottom, arr, idx1);
-  strokeFrame(
-    ctx,
-    obj.top,
-    obj.left,
-    obj.right - obj.left,
-    obj.bottom - obj.top
-  );
   return arr[idx1];
 }
 export async function leftEqualRightClock(
@@ -341,23 +292,9 @@ export async function leftEqualRightClock(
   ctx = assertCanvasContext(ctx);
   const obj = parseDatasets(sortBox);
   fillBar(ctx, obj.left, obj.top, obj.right, obj.bottom, arr, idx1, "green");
-  strokeFrame(
-    ctx,
-    obj.top,
-    obj.left,
-    obj.right - obj.left,
-    obj.bottom - obj.top
-  );
 
   await sleep(sleepCnt() / 2); // 2 is random number
   fillBar(ctx, obj.left, obj.top, obj.right, obj.bottom, arr, idx1);
-  strokeFrame(
-    ctx,
-    obj.top,
-    obj.left,
-    obj.right - obj.left,
-    obj.bottom - obj.top
-  );
   return ret;
 }
 export async function valueBiggerClock(
@@ -372,24 +309,10 @@ export async function valueBiggerClock(
   ctx = assertCanvasContext(ctx);
   const obj = parseDatasets(sortBox);
   fillBar(ctx, obj.left, obj.top, obj.right, obj.bottom, arr, idx1, "green");
-  strokeFrame(
-    ctx,
-    obj.top,
-    obj.left,
-    obj.right - obj.left,
-    obj.bottom - obj.top
-  );
 
   await sleep(sleepCnt() / 2); // 2 is random number
 
   fillBar(ctx, obj.left, obj.top, obj.right, obj.bottom, arr, idx1);
-  strokeFrame(
-    ctx,
-    obj.top,
-    obj.left,
-    obj.right - obj.left,
-    obj.bottom - obj.top
-  );
   return ret;
 }
 export async function valueSmallerClock(
@@ -404,24 +327,10 @@ export async function valueSmallerClock(
   ctx = assertCanvasContext(ctx);
   const obj = parseDatasets(sortBox);
   fillBar(ctx, obj.left, obj.top, obj.right, obj.bottom, arr, idx1, "green");
-  strokeFrame(
-    ctx,
-    obj.top,
-    obj.left,
-    obj.right - obj.left,
-    obj.bottom - obj.top
-  );
 
   await sleep(sleepCnt() / 2); // 2 is random number
 
   fillBar(ctx, obj.left, obj.top, obj.right, obj.bottom, arr, idx1);
-  strokeFrame(
-    ctx,
-    obj.top,
-    obj.left,
-    obj.right - obj.left,
-    obj.bottom - obj.top
-  );
   return ret;
 }
 /** includes begin and end */
@@ -482,6 +391,7 @@ function fillBar(
   ctx.fillRect(x(ind), y(arr[ind]), w(), H(arr[ind]));
   ctx.fillStyle = "white";
   ctx.fillRect(x(ind), top, w(), bottom - top - H(arr[ind]));
+  strokeFrame(ctx, top, left, right - left, bottom - top);
 }
 
 function assertCanvasContext(a: CanvasRenderingContext2D | null) {

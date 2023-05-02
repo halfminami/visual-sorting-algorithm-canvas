@@ -1,6 +1,6 @@
 /**
- * @file collection of sorting algorithms
- * implement with `ArrayWrap` methods, like other functions
+ * @file collection of sorting algorithm functions
+ * implement with `ArrayWrap`'s methods, like other functions
  * i'm afraid i didn't implement some of them correctly
  */
 import { ArrayWrap } from "./sortcore.js";

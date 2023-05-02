@@ -1,3 +1,7 @@
+/**
+ * @file collection of common function
+ * mainly manipulates html
+ */
 import { sortDict } from "./setting.js";
 import { ArrayWrap, SortWrap } from "./sortcore.js";
 
@@ -319,7 +323,37 @@ export async function equalsClock(
   );
   return arr[idx1];
 }
+export async function leftEqualRightClock(
+  arr: number[],
+  idx1: number,
+  idx2: number,
+  sortBox: HTMLCanvasElement,
+  sleepCnt: () => number
+) {
+  const ret = arr[idx1] == arr[idx2];
+  let ctx = sortBox.getContext("2d");
+  ctx = assertCanvasContext(ctx);
+  const obj = parseDatasets(sortBox);
+  fillBar(ctx, obj.left, obj.top, obj.right, obj.bottom, arr, idx1, "green");
+  strokeFrame(
+    ctx,
+    obj.top,
+    obj.left,
+    obj.right - obj.left,
+    obj.bottom - obj.top
+  );
 
+  await sleep(sleepCnt() / 2); // 2 is random number
+  fillBar(ctx, obj.left, obj.top, obj.right, obj.bottom, arr, idx1);
+  strokeFrame(
+    ctx,
+    obj.top,
+    obj.left,
+    obj.right - obj.left,
+    obj.bottom - obj.top
+  );
+  return ret;
+}
 export async function valueBiggerClock(
   arr: number[],
   value: number,

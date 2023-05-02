@@ -1,3 +1,6 @@
+/**
+ * @file config when using `mountAll()`
+ */
 import { SORTFUNC } from "./sortcommon.js";
 import {
   bubbleSort,

@@ -2,6 +2,7 @@ import { SIZE, WIDTH, HEIGHT } from "./setting.js";
 import { randomArray, controlForms, wrapAll } from "./sortcommon.js";
 import { Sort } from "./sortcore.js";
 
+/** mount all sort elements that managed by same buttons and inputs inserted by this function */
 export function mountAll(size = SIZE, width = WIDTH, height = HEIGHT) {
   const sorts = wrapAll(size, width, height, new Array(size).fill(0));
 

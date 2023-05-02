@@ -13,6 +13,7 @@ import {
   equalsClock,
   valueBiggerClock,
   valueSmallerClock,
+  leftEqualRightClock,
 } from "./sortcommon.js";
 
 export class Sort {
@@ -109,7 +110,6 @@ export class SortWrap {
   }
   /** copy array and update unit */
   setArray(arr: number[]): void {
-    // this.array = new ArrayWrap(arr, this.sortBox);
     this.array.setArray(arr);
     this.#setUnit();
   }
@@ -159,6 +159,16 @@ export class ArrayWrap {
     );
     return ret;
   }
+  async leftIsRight(idx1: number, idx2: number) {
+    const ret = await leftEqualRightClock(
+      this.array,
+      idx1,
+      idx2,
+      this.sortBox,
+      this.#sleepCnt
+    );
+    return ret;
+  }
   /** for copy (mergesort) */
   async equals(idx: number, value: number) {
     const ret = await equalsClock(
@@ -171,7 +181,6 @@ export class ArrayWrap {
     return ret;
   }
 
-  // REVIEW
   /** for binary search */
   async valueBigger(value: number, idx: number) {
     const ret = await valueBiggerClock(

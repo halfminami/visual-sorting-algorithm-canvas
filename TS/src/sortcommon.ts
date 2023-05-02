@@ -64,12 +64,30 @@ export function wrapAll(
     for (let div of divs) {
       div.classList.add("sort-mounted");
       const sortBox = insertSortBox(div, width, height, sortDict[item].caption);
+
+      const recordStart = document.createElement("button");
+      recordStart.textContent = "record";
+      const recordStop = document.createElement("button");
+      recordStop.textContent = "stop";
+      const download = document.createElement("button");
+      download.textContent = "download";
+      const video = document.createElement("video");
+      video.controls = true;
+      sortBox.insertAdjacentElement("afterend", video);
+      sortBox.insertAdjacentElement("afterend", recordStart);
+      sortBox.insertAdjacentElement("afterend", recordStop);
+      sortBox.insertAdjacentElement("afterend", download);
+
       ret.push(
         new SortWrap(
           sortDict[item].name,
           sortBox,
           array,
-          sortDict[item].sortFunc
+          sortDict[item].sortFunc,
+          recordStart,
+          recordStop,
+          download,
+          video
         )
       );
     }

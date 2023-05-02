@@ -2,6 +2,7 @@
  * @file class for sorting
  */
 
+import { canvasRecord } from "./record.js";
 import {
   SORTFUNC,
   initUnit,
@@ -89,6 +90,10 @@ export class SortWrap {
   array: ArrayWrap;
   name: string;
   sortFunc: SORTFUNC;
+  videoEl?: HTMLVideoElement;
+  recordStart?: HTMLButtonElement;
+  recordStop?: HTMLButtonElement;
+  downloadBtn?: HTMLButtonElement;
   /**
    * individual sort. pass this array to `Sort`
    * @param name to `console.log()` sort name
@@ -100,13 +105,22 @@ export class SortWrap {
     name: string,
     sortBox: HTMLCanvasElement,
     array: number[],
-    sortFunc: SORTFUNC
+    sortFunc: SORTFUNC,
+    recordStart?: HTMLButtonElement,
+    recordStop?: HTMLButtonElement,
+    downloadBtn?: HTMLButtonElement,
+    video?: HTMLVideoElement
   ) {
     this.name = name;
     this.sortBox = sortBox;
     this.sortFunc = sortFunc;
     this.array = new ArrayWrap(array, this.sortBox);
     this.#setUnit();
+    this.recordStart = recordStart;
+    this.recordStop = recordStop;
+    this.downloadBtn = downloadBtn;
+    this.videoEl = video;
+    this.setRecorder();
   }
   /** copy array and update unit */
   setArray(arr: number[]): void {
@@ -126,6 +140,26 @@ export class SortWrap {
   }
   #setUnit() {
     initUnit(this.sortBox, this.array.array);
+  }
+  setRecorder() {
+    if (
+      this.recordStart &&
+      this.recordStop &&
+      this.downloadBtn &&
+      this.videoEl
+    ) {
+      try {
+        canvasRecord(
+          this.sortBox,
+          this.recordStart,
+          this.recordStop,
+          this.downloadBtn,
+          this.videoEl
+        );
+      } catch (e) {
+        console.log(e);
+      }
+    }
   }
 }
 

@@ -13,6 +13,7 @@ import {
 export const WIDTH = 300;
 export const HEIGHT = 250;
 export const SIZE = 60;
+export const videoType = "video/webm";
 
 /** for `wrapAll()` only (not needed when mounting individually) */
 export const sortDict: {

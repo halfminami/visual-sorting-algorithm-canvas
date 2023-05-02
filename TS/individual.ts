@@ -8,7 +8,15 @@ import { gnomesort } from "./src/sortfunc.js";
 const par = document.querySelector<HTMLDivElement>(".gnomesort-ind");
 if (par) {
   const SIZE = 50;
-  const box = insertSortBox(par, 500, 250, "it's gnomesort!!! short code!");
+  const box = insertSortBox(
+    par,
+    500,
+    250,
+    "it's gnomesort!!! short code!",
+    undefined,
+    undefined,
+    0.8
+  );
   const sw = [new SortWrap("gnome sort", box, [0], gnomesort)];
   const obj: CONTROLS = {
     startBtn: document.querySelector<HTMLButtonElement>("#start"),

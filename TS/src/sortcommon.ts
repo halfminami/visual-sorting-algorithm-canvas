@@ -136,11 +136,12 @@ export function isSorted(arr: number[]): boolean {
 /**
  * create `div.sort-box`
  * @param parent create element inside this
- * @param width box outline width (px)
- * @param height box outline height (px)
+ * @param width box outline width (actual px)
+ * @param height box outline height (actual px)
  * @param caption description under box (if `undefined`, no text)
  * @param padLeft box outline padding left and right
  * @param padTop box outline paddng top and bottom
+ * @param scale scaling canvas
  * @returns canvas with dataset
  */
 export function insertSortBox(
@@ -149,7 +150,8 @@ export function insertSortBox(
   height: number,
   caption: string | undefined,
   padLeft: number = width / 10,
-  padTop: number = height / 10
+  padTop: number = height / 10,
+  scale = 1
 ): HTMLCanvasElement {
   const upperLeft = [padLeft, padTop];
   const lowerRight = [padLeft + width, padTop + height];
@@ -159,6 +161,9 @@ export function insertSortBox(
 
   sortBox.width = lowerRight[0] + padLeft;
   sortBox.height = lowerRight[1] + padTop + strHeight;
+  sortBox.style.transformOrigin = "0 0";
+  sortBox.style.transform = `scale(${scale},${scale})`;
+
   sortBox.dataset.left = upperLeft[0].toString();
   sortBox.dataset.top = upperLeft[1].toString();
   sortBox.dataset.right = lowerRight[0].toString();
@@ -178,6 +183,7 @@ export function insertSortBox(
 
   ctx.fillStyle = "black";
   if (caption) {
+    // this text positioning may fail
     ctx.textBaseline = "bottom";
     ctx.font = `${strHeight}px monospace`;
     ctx.fillText(caption, padLeft, lowerRight[1] + padTop + strHeight, width);

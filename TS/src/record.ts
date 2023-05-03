@@ -34,7 +34,7 @@ export function canvasRecord(
   downloadBtn.disabled = true;
 
   startBtn.addEventListener("click", () => {
-    recorder.start();
+    recorder.start(10);
     startBtn.disabled = true;
     stopBtn.disabled = false;
     downloadBtn.disabled = true;

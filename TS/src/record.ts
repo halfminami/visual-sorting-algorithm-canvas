@@ -6,6 +6,7 @@ export function canvasRecord(
   stopBtn: HTMLButtonElement,
   downloadBtn: HTMLButtonElement,
   videoEl: HTMLVideoElement,
+  filename = "sortVideo",
   mes: (str: string) => void = (str: string) => console.log(str)
 ) {
   const recorder = new MediaRecorder(c.captureStream());
@@ -13,7 +14,7 @@ export function canvasRecord(
   let chunk: Blob[] = [];
 
   recorder.addEventListener("dataavailable", (e) => {
-    mes("dataavailable event!");
+    // mes("dataavailable event!");
     chunk.push(e.data);
   });
 
@@ -49,7 +50,7 @@ export function canvasRecord(
     mes("download!");
     const a = document.createElement("a");
     a.href = videoEl.src;
-    a.download = "sortVideo.webm";
+    a.download = filename + ".webm";
     a.click();
     a.remove();
   });

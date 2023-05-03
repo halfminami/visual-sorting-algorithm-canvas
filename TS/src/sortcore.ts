@@ -90,6 +90,7 @@ export class SortWrap {
   array: ArrayWrap;
   name: string;
   sortFunc: SORTFUNC;
+  filename?: string;
   videoEl?: HTMLVideoElement;
   recordStart?: HTMLButtonElement;
   recordStop?: HTMLButtonElement;
@@ -106,6 +107,7 @@ export class SortWrap {
     sortBox: HTMLCanvasElement,
     array: number[],
     sortFunc: SORTFUNC,
+    filename?: string,
     recordStart?: HTMLButtonElement,
     recordStop?: HTMLButtonElement,
     downloadBtn?: HTMLButtonElement,
@@ -116,6 +118,7 @@ export class SortWrap {
     this.sortFunc = sortFunc;
     this.array = new ArrayWrap(array, this.sortBox);
     this.#setUnit();
+    this.filename = filename;
     this.recordStart = recordStart;
     this.recordStop = recordStop;
     this.downloadBtn = downloadBtn;
@@ -154,7 +157,8 @@ export class SortWrap {
           this.recordStart,
           this.recordStop,
           this.downloadBtn,
-          this.videoEl
+          this.videoEl,
+          this.filename || this.name
         );
       } catch (e) {
         console.log(e);

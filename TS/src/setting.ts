@@ -26,6 +26,8 @@ export const sortDict: {
     caption: string;
     /** to `console.log()` sorting name */
     name: string;
+    /** recorded video name without ext */
+    filename?: string;
   };
 } = {
   bubblesort: {
@@ -33,29 +35,34 @@ export const sortDict: {
     sortFunc: bubbleSort,
     caption: "bubble sort.",
     name: "bubble sort",
+    filename: "bubble_sort",
   },
   shakersort: {
     selector: ".shakersort",
     sortFunc: shakersort,
     caption: "(cocktail) shaker sort.",
     name: "shaker sort",
+    filename: "cocktail_shaker_sort",
   },
   mergesort: {
     selector: ".mergesort",
     sortFunc: mergesort,
     caption: "merge sort.",
     name: "merge sort",
+    filename: "merge_sort",
   },
   gnomesort: {
     selector: ".gnomesort",
     sortFunc: gnomesort,
     caption: "gnome sort.",
     name: "gnome sort",
+    filename: "gnome_sort",
   },
   radixsort: {
     selector: ".radixsort",
     sortFunc: radixsort,
     caption: "radix sort (ABCDE)",
     name: "radix sort (5)",
+    filename: "radix_sort_5",
   },
 };

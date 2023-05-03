@@ -73,6 +73,7 @@ export function wrapAll(
       download.textContent = "download";
       const video = document.createElement("video");
       video.controls = true;
+      video.autoplay = true;
       sortBox.insertAdjacentElement("afterend", download);
       sortBox.insertAdjacentElement("afterend", recordStop);
       sortBox.insertAdjacentElement("afterend", recordStart);
@@ -84,6 +85,7 @@ export function wrapAll(
           sortBox,
           array,
           sortDict[item].sortFunc,
+          sortDict[item].filename || sortDict[item].name,
           recordStart,
           recordStop,
           download,

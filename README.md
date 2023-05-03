@@ -1,6 +1,9 @@
 # Make sorting visual (`canvas`)
 This visualizes sorting algorithms like many other examples found when googling gif of sorts.   
-This uses `canvas`. It can record video on browser.
+
+https://user-images.githubusercontent.com/129936969/235823235-7d33c786-33cd-4658-a2ce-390d93fe2b7f.mp4
+
+This uses `canvas`. It can record video on browser. (above video is recorded as .webm and converted to .mp4)
 
 # How to add sort
 ## in `sortfunc.ts`

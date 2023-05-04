@@ -35,5 +35,33 @@ npm run start
 ```
 and enter the url into browser (only checked on chrome)
 
-## notes
-Clock for sorting (times to compare/swap/copy) was randomly chosen by me. The actual time differs by architecture.
+## Notes
+Clock for sorting (times to compare/swap/copy) was randomly chosen by me. The actual time differs by architecture.  
+When performing many sorts at the same time on canvas, sorting manipulations may be slower or image resolution may be poorer than sorts on html elements. This is for rather recording than showing many sorts.
+
+## Sorts I implemented
+I'm afraid I might have implemented wrong!
+- bubble sort
+- cocktail shaker sort
+- merge sort
+    - simple merge sort
+    - parallel merge
+- gnome sort
+- radix sort (base 5 `"ABCDE"`)
+- insertion sort
+    - simple swap
+    - binary search
+- selection sort
+    - simple max select
+    - double select
+- shell sort
+    - divide by 2
+    - divide by 3 (improved gap)
+- comb sort
+- quick sort
+    - simple quick sort, pivot: `(left + right) / 2`
+    - parallel quick sort, pivot: `(left + right) / 2`
+- circle sort
+- heap sort
+- odd even sort (parallel)
+- cycle sort

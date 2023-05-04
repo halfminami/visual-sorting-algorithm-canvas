@@ -15,12 +15,25 @@ if (par) {
     "it's gnomesort!!! short code!",
     undefined,
     undefined,
-    0.8
+    0.5
   );
-  const sw = [new SortWrap("gnome sort", box, [0], gnomesort)];
+  const sw = [
+    new SortWrap(
+      "gnome sort",
+      box,
+      [0],
+      gnomesort,
+      "gnomeSort",
+      document.querySelector<HTMLButtonElement>("#startrecord") || undefined,
+      document.querySelector<HTMLButtonElement>("#stoprecord") || undefined,
+      document.querySelector<HTMLButtonElement>("#download") || undefined,
+      document.querySelector<HTMLVideoElement>("#video") || undefined
+    ),
+  ];
   const obj: CONTROLS = {
     startBtn: document.querySelector<HTMLButtonElement>("#start"),
     shuffleBtn: document.querySelector<HTMLButtonElement>("#shuffle"),
+    sleepInput: document.querySelector<HTMLInputElement>("#clock"),
   };
   new Sort(randomArray(SIZE), sw, obj).mount();
 }

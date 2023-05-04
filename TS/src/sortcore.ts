@@ -98,9 +98,14 @@ export class SortWrap {
   /**
    * individual sort. pass this array to `Sort`
    * @param name to `console.log()` sort name
-   * @param sortBox needs css and sorting value elements (call sortcommon.ts/`insertSortBox()`)
+   * @param sortBox needs dataset (call sortcommon.ts/`insertSortBox()`)
    * @param array any array is ok since `Sort` sets it
    * @param sortFunc sortig function (maybe in setting.ts/`sortDict` and import it)
+   * @param filename recorded video filename
+   * @param recordStart
+   * @param recordStop
+   * @param downloadBtn
+   * @param video to show the video to download
    */
   constructor(
     name: string,
@@ -144,6 +149,7 @@ export class SortWrap {
   #setUnit() {
     initUnit(this.sortBox, this.array.array);
   }
+  /** to do video recording, all buttons must exist */
   setRecorder() {
     if (
       this.recordStart &&
